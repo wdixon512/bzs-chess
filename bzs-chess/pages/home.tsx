@@ -1,12 +1,24 @@
 "use client";
 
-import { Box, Center, ChakraProvider, Heading } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  ChakraProvider,
+  Flex,
+  Heading,
+  Img,
+} from "@chakra-ui/react";
 
 export function Home({ Component, pageProps }) {
   return (
-    <Center>
-      <Heading>It's Time to Play a Game</Heading>
-    </Center>
+    <Flex direction={"column"}>
+      <Center>
+        <Img src="/bzs-chess.png"></Img>
+      </Center>
+      <Center>
+        <Heading>It's Time to Play a Game</Heading>
+      </Center>
+    </Flex>
   );
 }
 
