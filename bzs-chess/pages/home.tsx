@@ -25,6 +25,17 @@ export function Home({ Component, pageProps }) {
       <Center>
         <Heading>It's Time to Play a Game</Heading>
       </Center>
+      <Center>
+        <Button
+          mt={"5"}
+          bgColor={"blueviolet"}
+          textColor={"lightgrey"}
+          width={"fit-content"}
+          justifySelf={"center"}
+        >
+          Click Me
+        </Button>
+      </Center>
     </Flex>
   );
 }
