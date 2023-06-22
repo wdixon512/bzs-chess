@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 import {
   Box,
   Button,
@@ -8,11 +10,20 @@ import {
   Flex,
   Heading,
   Img,
+  Input,
   useColorMode,
 } from "@chakra-ui/react";
 
 export function Home({ Component, pageProps }) {
   const { colorMode, toggleColorMode } = useColorMode();
+  const [player1Name, setPlayer1Name] = useState("");
+  const [player2Name, setPlayer2Name] = useState("");
+
+  const handlePlayClick = () => {
+    // Perform actions when Play button is clicked
+    console.log("Player 1 Name:", player1Name);
+    console.log("Player 2 Name:", player2Name);
+  };
 
   return (
     <Flex direction={"column"}>
@@ -26,6 +37,24 @@ export function Home({ Component, pageProps }) {
         <Heading>It's Time to Play a Game</Heading>
       </Center>
       <Center>
+        <Input
+          type="text"
+          value={player1Name}
+          onChange={(e) => setPlayer1Name(e.target.value)}
+          placeholder="Player 1 Name"
+          marginInline={100}
+          mt={5}
+        />
+        <Input
+          type="text"
+          value={player2Name}
+          onChange={(e) => setPlayer2Name(e.target.value)}
+          placeholder="Player 2 Name"
+          marginInline={100}
+          mt={5}
+        />
+      </Center>
+      <Center>
         <Button
           mt={"5"}
           bgColor={"blueviolet"}
@@ -33,7 +62,7 @@ export function Home({ Component, pageProps }) {
           width={"fit-content"}
           justifySelf={"center"}
         >
-          Click Me
+          Play
         </Button>
       </Center>
     </Flex>
