@@ -56,8 +56,9 @@ export function Home({ Component, pageProps }) {
       </Center>
       <Center>
         <Button
+          opacity={0.5}
           mt={"5"}
-          bgColor={"blueviolet"}
+          bgColor={"teal"}
           textColor={"lightgrey"}
           width={"fit-content"}
           justifySelf={"center"}
