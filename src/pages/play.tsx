@@ -7,3 +7,5 @@ export function Play({ Component, pageProps }) {
     </Flex>
   );
 }
+
+export default Play;
