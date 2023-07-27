@@ -2,6 +2,7 @@
 
 import { ChakraProvider } from "@chakra-ui/react";
 import Head from "next/head";
+import { GameContextProvider } from "../components/contexts/GameContext";
 
 export function Layout({ Component, pageProps }) {
   return (
@@ -10,7 +11,10 @@ export function Layout({ Component, pageProps }) {
         <link rel="shortcut icon" href="/favicon.svg" />
       </Head>
       <ChakraProvider>
-        <Component {...pageProps} />
+        <GameContextProvider>
+
+          <Component {...pageProps} />
+        </GameContextProvider>
       </ChakraProvider>
     </>
   );

@@ -1,8 +1,12 @@
 //if html must be tsx
 
+
+import { useContext } from "react"
+import { useRouter } from "next/router";
 import { useForm, SubmitHandler, Form } from "react-hook-form"
 
-import { Center, Input, Flex, Button, FormControl } from "@chakra-ui/react"
+import { Center, Input, Flex, Button, FormControl, Text } from "@chakra-ui/react"
+import { GameContext } from "./contexts/GameContext"
 
 type PlayerNames = {
     player1: string
@@ -16,9 +20,18 @@ export const PlayerForm = () => {
         formState: { errors },
     } = useForm<PlayerNames>()
 
+    const { setPlayer1, setPlayer2 } = useContext(GameContext);
+
+    const router = useRouter();
+
+    //<> equals 'of type' or 'for'
     const onSubmit: SubmitHandler<PlayerNames> = (data) => {
-        console.log(data)
-    }  //<> equals 'of type' or 'for'
+        setPlayer1(data.player1)
+        setPlayer2(data.player2)
+
+        router.push("play");
+    }
+
 
     return (
         <Center>
@@ -26,15 +39,19 @@ export const PlayerForm = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <FormControl>
                     {/* include validation with required or other standard HTML validation rules */}
-                    <Input {...register("player1", { required: true })} />
+                    <Input {...register("player1", { required: true, minLength: 2 })} />
                     {/* errors will return when field validation fails  */}
-                    {errors.player1 && <span>This field is required</span>}
+                    {errors.player1 && errors.player1.type === "required" && <Text textColor="red" >This is a required field</Text>}
+                    {errors.player1 && errors.player1.type === "minLength" && <Text textColor="red" >Name must be at least 2 chars.</Text>}
+
                 </FormControl>
                 <FormControl>
                     {/* include validation with required or other standard HTML validation rules */}
-                    <Input {...register("player2", { required: true })} />
+                    <Input {...register("player2", { required: true, minLength: 2 })} />
                     {/* errors will return when field validation fails  */}
-                    {errors.player2 && <span>This field is required</span>}
+                    {errors.player2 && errors.player2.type === "required" && <Text textColor="red" >This is a required field</Text>}
+                    {errors.player2 && errors.player2.type === "minLength" && <Text textColor="red" >Name must be at least 2 chars.</Text>}
+
                 </FormControl>
 
                 <Button

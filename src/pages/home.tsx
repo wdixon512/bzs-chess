@@ -16,16 +16,14 @@ import {
 
 import { PlayerForm } from "../components/PlayerForm";
 
+
+type Dog = {
+  name: string,
+  breed: string
+}
+
 export function Home({ Component, pageProps }) {
   const { colorMode, toggleColorMode } = useColorMode();
-  const [player1Name, setPlayer1Name] = useState("");
-  const [player2Name, setPlayer2Name] = useState("");
-
-  const handlePlayClick = () => {
-    // Perform actions when Play button is clicked
-    console.log("Player 1 Name:", player1Name);
-    console.log("Player 2 Name:", player2Name);
-  };
 
   return (
     //TODO: test comment
