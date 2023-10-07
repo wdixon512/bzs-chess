@@ -1,26 +1,15 @@
 "use client";
 
-import { useState } from "react";
-
 import {
-  Box,
   Button,
   Center,
-  ChakraProvider,
   Flex,
   Heading,
   Img,
-  Input,
   useColorMode,
 } from "@chakra-ui/react";
 
 import { PlayerForm } from "../components/PlayerForm";
-
-
-type Dog = {
-  name: string,
-  breed: string
-}
 
 export function Home({ Component, pageProps }) {
   const { colorMode, toggleColorMode } = useColorMode();

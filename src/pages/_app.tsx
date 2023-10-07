@@ -1,6 +1,6 @@
 "use client";
 
-import { ChakraProvider } from "@chakra-ui/react";
+import { Box, ChakraProvider, Container } from "@chakra-ui/react";
 import Head from "next/head";
 import { GameContextProvider } from "../components/contexts/GameContext";
 
@@ -12,8 +12,9 @@ export function Layout({ Component, pageProps }) {
       </Head>
       <ChakraProvider>
         <GameContextProvider>
-
-          <Component {...pageProps} />
+          <Box h="100vh">
+            <Component {...pageProps} />
+          </Box>
         </GameContextProvider>
       </ChakraProvider>
     </>
