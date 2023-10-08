@@ -17,7 +17,7 @@ export const ChessSquare = (props: ChessPieceProps) => {
 
   const piece = getPiece({ rank: row, file: column });
 
-  const [{ droppedPiece }, drop] = useDrop({
+  const [_, drop] = useDrop({
     accept: "chessPiece",
     drop: (item: GameLocation, monitor) => {
       movePiece(
@@ -25,17 +25,10 @@ export const ChessSquare = (props: ChessPieceProps) => {
         { rank: row, file: column }
       );
     },
-    collect: (monitor) => ({
-      isOver: !!monitor.isOver(),
-      droppedPiece: monitor.getItem(),
-    }),
   });
 
-  const [{ isDragging }, drag] = useDrag({
+  const [{}, drag] = useDrag({
     type: "chessPiece",
-    collect: (monitor) => ({
-      isDragging: !!monitor.isDragging(),
-    }),
     item: { rank: row, file: column },
   });
 
