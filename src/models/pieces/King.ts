@@ -1,3 +1,4 @@
+import { isValidKingMove } from "../../helpers/validMoveHelpers";
 import { GameLocation } from "../GameLocation";
 import { ChessColor, GamePiece } from "../GamePiece";
 import { GameSquare } from "../GameSquare";
@@ -18,6 +19,7 @@ export class King extends GamePiece {
     to: GameLocation
   ): boolean {
     if (!super.isLegalMove(board, from, to)) return false;
+    if (!isValidKingMove(board, from, to)) return false;
     return true;
   }
 }

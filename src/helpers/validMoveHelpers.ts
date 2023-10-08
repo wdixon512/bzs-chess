@@ -123,6 +123,33 @@ export const isValidPawnMove = (
   return true;
 };
 
+export const isValidKingMove = (
+  board: GameSquare[][],
+  from: GameLocation,
+  to: GameLocation
+): boolean => {
+  if (
+    (Math.abs(to.rank - from.rank) == 1 &&
+      Math.abs(to.file - from.file) <= 1) ||
+    (Math.abs(to.file - from.file) == 1 && Math.abs(to.rank - from.rank) <= 1)
+  ) {
+    for (let i = -1; i < 2; i++) {
+      for (let j = -1; j < 2; j++) {
+        // if there's a king of the opposite color in the squares surrounding "to"
+        if (
+          board[to.rank + i][to.file + j].piece?.name == "King" &&
+          board[to.rank + i][to.file + j].piece?.color !=
+            board[from.rank][from.file].piece?.color
+        ) {
+          return false;
+        }
+      }
+    }
+
+    return true;
+  }
+};
+
 export const isValidPawnFirstMove = (
   from: GameLocation,
   to: GameLocation
