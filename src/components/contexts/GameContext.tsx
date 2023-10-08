@@ -21,7 +21,16 @@ export const GameContextProvider = ({ children }) => {
   const [player2, setPlayer2] = useState<string | null>(null);
   const [boardState, setBoardState] = useState<GameBoard>(createGameBoard());
 
-  const movePiece = (from: GameLocation, to: GameLocation) => {};
+  const movePiece = (from: GameLocation, to: GameLocation) => {
+    setBoardState((boardState) => {
+      const newBoardState = { ...boardState };
+      newBoardState.pieces[to.rank][to.file] =
+        boardState.pieces[from.rank][from.file];
+      newBoardState.pieces[from.rank][from.file] = null;
+      return newBoardState;
+    });
+  };
+
   const getPiece = (location: GameLocation): GamePiece | null => {
     return boardState.pieces[location.rank][location.file]?.piece;
   };
