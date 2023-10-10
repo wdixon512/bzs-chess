@@ -21,7 +21,26 @@ export const GameContextProvider = ({ children }) => {
   const [player2, setPlayer2] = useState<string | null>(null);
   const [boardState, setBoardState] = useState<GameBoard>(createGameBoard());
 
-  const movePiece = (from: GameLocation, to: GameLocation) => {};
+  const movePiece = (from: GameLocation, to: GameLocation) => {
+    if (isLegalMove(from, to)) {
+      setBoardState((boardState) => {
+        const newBoardState = { ...boardState };
+        newBoardState.pieces[to.rank][to.file].piece =
+          boardState.pieces[from.rank][from.file].piece;
+
+        newBoardState.pieces[from.rank][from.file].piece = undefined;
+
+        newBoardState.pieces[to.rank][to.file].piece.hasMoved = true;
+        return newBoardState;
+      });
+    }
+  };
+
+  const isLegalMove = (from: GameLocation, to: GameLocation): boolean => {
+    const piece = boardState.pieces[from.rank][from.file]?.piece;
+    return piece?.isLegalMove(boardState.pieces, from, to) ?? false;
+  };
+
   const getPiece = (location: GameLocation): GamePiece | null => {
     return boardState.pieces[location.rank][location.file]?.piece;
   };

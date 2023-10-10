@@ -1,11 +1,11 @@
 import { GamePiece } from "./GamePiece";
 import { GameSquare } from "./GameSquare";
-import { createBishop } from "./pieces/Bishop";
-import { createKing } from "./pieces/King";
-import { createKnight } from "./pieces/Knight";
-import { createPawn } from "./pieces/Pawn";
-import { createQueen } from "./pieces/Queen";
-import { createRook } from "./pieces/Rook";
+import { Bishop } from "./pieces/Bishop";
+import { King } from "./pieces/King";
+import { Knight } from "./pieces/Knight";
+import { Pawn } from "./pieces/Pawn";
+import { Queen } from "./pieces/Queen";
+import { Rook } from "./pieces/Rook";
 
 export type GameBoard = {
   pieces: GameSquare[][]; // 2d array of squares
@@ -35,31 +35,31 @@ function createGameSquare(row: number, col: number): GameSquare {
   };
 }
 
-function getInitPiece(row: number, col: number): GamePiece | null {
+function getInitPiece(row: number, col: number): GamePiece | undefined {
   const color = row < 4 ? "white" : "black";
 
-  if (row == 1 || row == 6) return createPawn(color);
+  if (row == 1 || row == 6) return new Pawn(color);
   else if (row == 0 || row == 7) {
     switch (col) {
       case 0:
       case 7:
-        return createRook(color);
+        return new Rook(color);
 
       case 1:
       case 6:
-        return createKnight(color);
+        return new Knight(color);
 
       case 2:
       case 5:
-        return createBishop(color);
+        return new Bishop(color);
 
       case 3:
-        return createQueen(color);
+        return new Queen(color);
 
       case 4:
-        return createKing(color);
+        return new King(color);
     }
   } else {
-    return null;
+    return undefined;
   }
 }
