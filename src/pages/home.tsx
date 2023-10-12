@@ -18,7 +18,7 @@ export function Home({ Component, pageProps }) {
     //TODO: test comment
     <Flex direction={"column"}>
       <Button onClick={toggleColorMode}>
-        Toggle {colorMode === "light" ? "Dark" : "Light"}
+        Toggle Mode {colorMode === "light" ? "Dark" : "Light"}
       </Button>
       <Center>
         <Img src="/bzs-chess.png"></Img>
